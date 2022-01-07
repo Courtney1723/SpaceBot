@@ -65,7 +65,7 @@ module.exports = {
         .setColor('#FFF000')
         .setTitle('How many games were released for the Nintendo 64?')
         .setDescription(`Bonus Round 1`)
-        .setThumbnail(`https://imgur.com/ph7aRgM.png`)
+        .setThumbnail(`https://imgur.com/loGPYXn.png`)
              
 
         
@@ -97,7 +97,7 @@ message.channel.send({
       const filter = (button, user) => button.id === 'b01answer' && !user.bot;
 
       const collector = 
-      message.createButtonCollector(filter, {max:1, time: 60000 })
+      message.createButtonCollector(filter, {max: 2, time: 60000 })
 
 
 collector.on('collect', async (button, user, clicker, filter) => {
@@ -113,7 +113,7 @@ collector.on('collect', async (button, user, clicker, filter) => {
        let embed3 = new MessageEmbed()
         .setColor('#FFF000')
         .setTitle('How many games were released for the Nintendo 64?')
-        .setDescription(`<@${button.clicker.id}> won this round! \n> **393** \nwas the correct answer
+        .setDescription(`Bonus Round 1 is over! \n> **393** \nwas the correct answer
         `)
         .setThumbnail(`https://imgur.com/ph7aRgM.png`)
 
@@ -143,7 +143,3 @@ setTimeout(function() {button.channel.send({
 
 
     })}))).catch(err => console.log(err))}}
-
-
-
-

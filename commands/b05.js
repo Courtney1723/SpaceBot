@@ -66,7 +66,7 @@ module.exports = {
         .setColor('#FFF000')
         .setTitle('What did Nintendo manufacture before video games?')
         .setDescription(`Bonus Round 5`)
-        .setThumbnail(`https://imgur.com/L6OE0Ji.png`)
+        .setThumbnail(`https://imgur.com/loGPYXn.png`)
                                       
 
         
@@ -98,7 +98,7 @@ message.channel.send({
       const filter = (button, user) => button.id === 'b05answer' && !user.bot;
 
       const collector = 
-      message.createButtonCollector(filter, {max:1, time: 60000 })
+      message.createButtonCollector(filter, {max: 2, time: 60000 })
 
 
 collector.on('collect', async (button, user, clicker, filter) => {
@@ -114,7 +114,7 @@ collector.on('collect', async (button, user, clicker, filter) => {
        let embed3 = new MessageEmbed()
         .setColor('#FFF000')
         .setTitle('What did Nintendo manufacture before video games?')
-        .setDescription(`<@${button.clicker.id}> won this round! \n> **Playing Cards** \nwas the correct answer
+        .setDescription(`Bonus Round 5 is over! \n> **Playing Cards** \nwas the correct answer
         `)
         .setThumbnail(`https://imgur.com/L6OE0Ji.png`)
         

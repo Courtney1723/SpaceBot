@@ -15,13 +15,13 @@ module.exports = {
 
     let button2 = new MessageButton()
       .setStyle('blurple')
-      .setLabel('Metal Gear Survive') 
+      .setLabel('Super Mario') 
       .setID('null2') 
       .setDisabled()
 
     let button3 = new MessageButton()
       .setStyle('green')
-      .setLabel('Fallout 4') 
+      .setLabel('Fallout') 
       .setID('exanswer') 
       .setDisabled()
 
@@ -40,12 +40,12 @@ module.exports = {
 
     let button6 = new MessageButton()
       .setStyle('blurple')
-      .setLabel('Metal Gear Survive') 
+      .setLabel('Super Mario') 
       .setID('null2') 
 
     let button7 = new MessageButton()
       .setStyle('green')
-      .setLabel('Fallout 4') 
+      .setLabel('Fallout') 
       .setID('exanswer') 
 
     let button8 = new MessageButton()
@@ -56,15 +56,15 @@ module.exports = {
 
     let embed1 = new MessageEmbed()
         .setColor('#FFF000')
-        .setTitle('Vault Boy is featured in what video game?')
+        .setTitle('Vault Boy is featured in what video game franchise?')
         .setDescription(`***Example Round***`)
         .setThumbnail(`https://imgur.com/I09vjs2.png`)
 
     let embed2 = new MessageEmbed()
         .setColor('#FFF000')
-        .setTitle('Vault Boy is featured in what video game?')
+        .setTitle('Vault Boy is featured in what video game franchise?')
         .setDescription(`***Example Round***`)
-        .setThumbnail(`https://imgur.com/I09vjs2.png`)
+        .setThumbnail(`https://imgur.com/loGPYXn.png`) 
                
 
         
@@ -96,7 +96,7 @@ message.channel.send({
       const filter = (button, user) => button.id === 'exanswer' && !user.bot;
 
       const collector = 
-      message.createButtonCollector(filter, {max:1, time: 60000 })
+      message.createButtonCollector(filter, {max: 2, time: 60000 })
 
 
 collector.on('collect', async (button, user, clicker, filter) => {
@@ -113,8 +113,8 @@ collector.on('collect', async (button, user, clicker, filter) => {
 
        let embed3 = new MessageEmbed()
         .setColor('#FFF000')
-        .setTitle('Vault Boy is featured in what video game?')
-        .setDescription(`<@${button.clicker.id}> won this round! \n> **Fallout 4** \nwas the correct answer
+        .setTitle('Vault Boy is featured in what video game franchise?')
+        .setDescription(`The example round is over!\n> **Fallout** \nwas the correct answer
         `)
         .setThumbnail(`https://imgur.com/I09vjs2.png`)
 
@@ -123,28 +123,11 @@ setTimeout(function() {button.message.edit({
     button1, button2, button3, button4
   ],
   embed: embed3
-    })}, 10000)
+    })}, 8000)
 
 setTimeout(function() {button.channel.send({
   embed: embedCongrats
-    })}, 12000)
-
-
-
-
-
-
-
-
-
-
-
-
-
+    })}, 10000)
 
 
     })}))).catch(err => console.log(err))}}
-
-
-
-

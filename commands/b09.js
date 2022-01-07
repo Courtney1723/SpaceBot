@@ -66,7 +66,7 @@ module.exports = {
         .setColor('#FFF000')
         .setTitle('Roger Craig Smith voices Sonic the Hedgehog and which Resident Evil Character?')
         .setDescription(`Bonus Round 9`)
-        .setThumbnail(`https://imgur.com/PGOmZKK.png`)
+        .setThumbnail(`https://imgur.com/loGPYXn.png`)
                                                                  
 
         
@@ -98,7 +98,7 @@ message.channel.send({
       const filter = (button, user) => button.id === 'b09answer' && !user.bot;
 
       const collector = 
-      message.createButtonCollector(filter, {max:1, time: 60000 })
+      message.createButtonCollector(filter, {max: 2, time: 60000 })
 
 
 collector.on('collect', async (button, user, clicker, filter) => {
@@ -114,7 +114,7 @@ collector.on('collect', async (button, user, clicker, filter) => {
        let embed3 = new MessageEmbed()
         .setColor('#FFF000')
         .setTitle('Roger Craig Smith voices Sonic the Hedgehog and which Resident Evil Character?')
-        .setDescription(`<@${button.clicker.id}> won this round! \n> **Chris Redfield** \nwas the correct answer
+        .setDescription(`Bonus Round 9 is over! \n> **Chris Redfield** \nwas the correct answer
         `)
         .setThumbnail(`https://imgur.com/PGOmZKK.png`)
         

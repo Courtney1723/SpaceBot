@@ -66,7 +66,7 @@ module.exports = {
         .setColor('#FFF000')
         .setTitle('What is Super Mario Galaxy called in South Korea?')
         .setDescription(`Bonus Round 7`)
-        .setThumbnail(`https://imgur.com/NbpHEue.png`)
+        .setThumbnail(`https://imgur.com/loGPYXn.png`)
                                                      
 
         
@@ -98,7 +98,7 @@ message.channel.send({
       const filter = (button, user) => button.id === 'b07answer' && !user.bot;
 
       const collector = 
-      message.createButtonCollector(filter, {max:1, time: 60000 })
+      message.createButtonCollector(filter, {max: 2, time: 60000 })
 
 
 collector.on('collect', async (button, user, clicker, filter) => {
@@ -114,7 +114,7 @@ collector.on('collect', async (button, user, clicker, filter) => {
        let embed3 = new MessageEmbed()
         .setColor('#FFF000')
         .setTitle('What is Super Mario Galaxy called in South Korea?')
-        .setDescription(`<@${button.clicker.id}> won this round! \n> **Super Mario Wii** \nwas the correct answer
+        .setDescription(`Bonus Round 7 is over! \n> **Super Mario Wii** \nwas the correct answer
         `)
         .setThumbnail(`https://imgur.com/NbpHEue.png`)
         

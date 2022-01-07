@@ -62,7 +62,7 @@ module.exports = {
     let embed2 = new MessageEmbed()
         .setColor('#00FFFF')
         .setDescription(`*Round 16*`)
-        .setThumbnail(`https://imgur.com/3pZyxZW.png`)
+        .setThumbnail(`https://imgur.com/loGPYXn.png`)
                                                                  
   
 
@@ -92,7 +92,7 @@ message.channel.send({
       const filter = (button, user) => button.id === 'r16answer' && !user.bot;
 
       const collector = 
-      message.createButtonCollector(filter, {max:1, time: 60000 })
+      message.createButtonCollector(filter, {max: 2, time: 60000 })
 
 
 collector.on('collect', async (button, user, clicker, filter) => {
@@ -109,7 +109,7 @@ collector.on('collect', async (button, user, clicker, filter) => {
        let embed3 = new MessageEmbed()
         .setColor('#00FF0F')
         .setTitle('Round 16 is over!')
-        .setDescription(`<@${button.clicker.id}> won this round! \n> **SpongeBob SquarePants: The Battle for Bikini Bottom** \nwas the correct answer
+        .setDescription(`There was more than one winner! \n> **SpongeBob SquarePants: The Battle for Bikini Bottom** \nwas the correct answer
         `)
         .setThumbnail(`https://imgur.com/3pZyxZW.png`)
 
@@ -118,11 +118,11 @@ setTimeout(function() {button.message.edit({
     button1, button2, button3, button4
   ],
   embed: embed3
-    })}, 10000)
+    })}, 8000)
 
 setTimeout(function() {button.channel.send({
   embed: embedCongrats
-    })}, 12000)
+    })}, 10000)
 
 
     })}))).catch(err => console.log(err))}}

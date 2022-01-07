@@ -66,7 +66,7 @@ module.exports = {
         .setColor('#FFF000')
         .setTitle('Resident Evil 1 was inspired by what Capcom game?')
         .setDescription(`Final Bonus Round`)
-        .setThumbnail(`https://imgur.com/YIelmVo.png`)
+        .setThumbnail(`https://imgur.com/loGPYXn.png`)
                                                                          
 
         
@@ -98,7 +98,7 @@ message.channel.send({
       const filter = (button, user) => button.id === 'b10answer' && !user.bot;
 
       const collector = 
-      message.createButtonCollector(filter, {max:1, time: 60000 })
+      message.createButtonCollector(filter, {max: 2, time: 60000 })
 
 
 collector.on('collect', async (button, user, clicker, filter) => {
@@ -114,7 +114,7 @@ collector.on('collect', async (button, user, clicker, filter) => {
        let embed3 = new MessageEmbed()
         .setColor('#FFF000')
         .setTitle('Resident Evil 1 was inspired by what Capcom game?')
-        .setDescription(`<@${button.clicker.id}> won this round! \n> **Sweet Home** \nwas the correct answer
+        .setDescription(`The Final Bonus Round is over!\nThanks for playing! \n> **Sweet Home** \nwas the correct answer
         `)
         .setThumbnail(`https://imgur.com/YIelmVo.png`)
         

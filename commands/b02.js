@@ -65,7 +65,7 @@ module.exports = {
         .setColor('#FFF000')
         .setTitle('What Rockstar game is illegal to own in New Zealand?')
         .setDescription(`Bonus Round 2`)
-         .setThumbnail(`https://imgur.com/yeANmfW.png`)
+         .setThumbnail(`https://imgur.com/loGPYXn.png`)
                        
 
         
@@ -97,7 +97,7 @@ message.channel.send({
       const filter = (button, user) => button.id === 'b02answer' && !user.bot;
 
       const collector = 
-      message.createButtonCollector(filter, {max:1, time: 60000 })
+      message.createButtonCollector(filter, {max: 2, time: 60000 })
 
 
 collector.on('collect', async (button, user, clicker, filter) => {
@@ -113,7 +113,7 @@ collector.on('collect', async (button, user, clicker, filter) => {
        let embed3 = new MessageEmbed()
         .setColor('#FFF000')
         .setTitle('What Rockstar game is illegal to own in New Zealand?')
-        .setDescription(`<@${button.clicker.id}> won this round! \n> **Manhunt** \nwas the correct answer
+        .setDescription(`Bonus Round 2 is over! \n> **Manhunt** \nwas the correct answer
         `)
         .setThumbnail(`https://imgur.com/yeANmfW.png`)
         .setFooter(`Manhunt is banned in Australia, Germany, New Zealand, and The United States`)
@@ -131,7 +131,3 @@ setTimeout(function() {button.channel.send({
 
 
     })}))).catch(err => console.log(err))}}
-
-
-
-

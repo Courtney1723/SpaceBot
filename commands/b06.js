@@ -66,7 +66,7 @@ module.exports = {
         .setColor('#FFF000')
         .setTitle('What 2013 video game made over 1 billion $USD in just 3 days?')
         .setDescription(`Bonus Round 6`)
-        .setThumbnail(`https://imgur.com/BeLFMiT.png`)
+        .setThumbnail(`https://imgur.com/loGPYXn.png`)
                                              
 
         
@@ -98,7 +98,7 @@ message.channel.send({
       const filter = (button, user) => button.id === 'b06answer' && !user.bot;
 
       const collector = 
-      message.createButtonCollector(filter, {max:1, time: 60000 })
+      message.createButtonCollector(filter, {max: 4, time: 60000 })
 
 
 collector.on('collect', async (button, user, clicker, filter) => {
@@ -114,7 +114,7 @@ collector.on('collect', async (button, user, clicker, filter) => {
        let embed3 = new MessageEmbed()
         .setColor('#FFF000')
         .setTitle('What 2013 video game made over 1 billion $USD in just 3 days?')
-        .setDescription(`<@${button.clicker.id}> won this round! \n> **Grand Theft Auto V** \nwas the correct answer
+        .setDescription(`Bonus Round 6 is over! \n> **Grand Theft Auto V** \nwas the correct answer
         `)
         .setThumbnail(`https://imgur.com/BeLFMiT.png`)
         

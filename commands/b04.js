@@ -66,7 +66,7 @@ module.exports = {
         .setColor('#FFF000')
         .setTitle('The mobile game Crossy Road is a reimagine of what classic arcade game?')
         .setDescription(`Bonus Round 4`)
-        .setThumbnail(`https://imgur.com/XT2sUjK.png`)
+        .setThumbnail(`https://imgur.com/loGPYXn.png`)
                     
 
         
@@ -98,7 +98,7 @@ message.channel.send({
       const filter = (button, user) => button.id === 'b04answer' && !user.bot;
 
       const collector = 
-      message.createButtonCollector(filter, {max:1, time: 60000 })
+      message.createButtonCollector(filter, {max: 2, time: 60000 })
 
 
 collector.on('collect', async (button, user, clicker, filter) => {
@@ -114,7 +114,7 @@ collector.on('collect', async (button, user, clicker, filter) => {
        let embed3 = new MessageEmbed()
         .setColor('#FFF000')
         .setTitle('The mobile game Crossy Road is a reimagine of what classic arcade game?')
-        .setDescription(`<@${button.clicker.id}> won this round! \n> **Frogger** \nwas the correct answer
+        .setDescription(`Bonus Round 4 is over! \n> **Frogger** \nwas the correct answer
         `)
         .setThumbnail(`https://imgur.com/XT2sUjK.png`)
         

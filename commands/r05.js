@@ -63,7 +63,7 @@ module.exports = {
     let embed2 = new MessageEmbed()
         .setColor('#00FFFF')
         .setDescription(`*Round 5*`)
-        .setThumbnail(`https://imgur.com/aU6z50r.png`) 
+        .setThumbnail(`https://imgur.com/loGPYXn.png`) 
              
 
         
@@ -95,7 +95,7 @@ message.channel.send({
       const filter = (button, user) => button.id === 'r05answer' && !user.bot;
 
       const collector = 
-      message.createButtonCollector(filter, {max:1, time: 60000 })
+      message.createButtonCollector(filter, {max: 3, time: 60000 })
 
 
 collector.on('collect', async (button, user, clicker, filter) => {
@@ -112,7 +112,7 @@ collector.on('collect', async (button, user, clicker, filter) => {
        let embed3 = new MessageEmbed()
         .setColor('#00FF0F')
         .setTitle('Round 5 is over!')
-        .setDescription(`<@${button.clicker.id}> won this round! \n> **GTA San Andreas** \nwas the correct answer
+        .setDescription(`There was more than one winner!\n> **GTA San Andreas** \nwas the correct answer
         `)
         .setThumbnail(`https://imgur.com/aU6z50r.png`) 
 
@@ -121,28 +121,10 @@ setTimeout(function() {button.message.edit({
     button1, button2, button3, button4
   ],
   embed: embed3
-    })}, 10000)
+    })}, 8000)
 
 setTimeout(function() {button.channel.send({
   embed: embedCongrats
-    })}, 12000)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    })}, 10000)
 
     })}))).catch(err => console.log(err))}}
-
-
-
-

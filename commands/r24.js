@@ -62,7 +62,7 @@ module.exports = {
     let embed2 = new MessageEmbed()
         .setColor('#00FFFF')
         .setDescription(`*Round 24*`)
-         .setThumbnail(`https://imgur.com/ykiuoy2.png`)                                                                                                                     
+         .setThumbnail(`https://imgur.com/loGPYXn.png`)                                                                                                                     
   
 
 message.channel.send({
@@ -117,11 +117,11 @@ setTimeout(function() {button.message.edit({
     button1, button2, button3, button4
   ],
   embed: embed3
-    })}, 10000)
+    })}, 8000)
 
 setTimeout(function() {button.channel.send({
   embed: embedCongrats
-    })}, 12000)
+    })}, 10000)
 
 
     })}))).catch(err => console.log(err))}}
