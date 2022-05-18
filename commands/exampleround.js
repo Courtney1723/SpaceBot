@@ -7,6 +7,8 @@ module.exports = {
 	description: 'Buttons',
 	async execute(message, args, client, button) {
 
+
+    // Part 1 - disabled buttons
     let button1 = new MessageButton()
       .setStyle('red')
       .setLabel('Epic Mickey') 
@@ -32,7 +34,7 @@ module.exports = {
       .setDisabled()
 
 
-
+  //Part 2 - active buttons
     let button5 = new MessageButton()
       .setStyle('red')
       .setLabel('Epic Mickey') 
@@ -73,16 +75,16 @@ module.exports = {
 message.channel.send({
   buttons: [
     button1, button2, button3, button4
-  ],
+  ], //non-clickable buttons
   embed: embed1
 }).then( async message =>
 
-message.delete({timeout: 10000}).then( async message =>
+message.delete({timeout: 10000}).then( async message => // wait 10 seconds then send clickable buttons
 
 message.channel.send({
   buttons: [
     button5, button6, button7, button8
-  ],
+  ], //clicakble buttons
   embed: embed2})).catch(err => console.log(err))
      
     
@@ -90,20 +92,20 @@ message.channel.send({
     
     .then((async function (message, button) {
 
-      await (message => message.button.id == 'exanswer')
+      await (message => message.button.id == 'exanswer') //if the answer is right
 
 
-      const filter = (button, user) => button.id === 'exanswer' && !user.bot;
+      const filter = (button, user) => button.id === 'exanswer' && !user.bot; //looks for the right answer and ignores the bot response
 
       const collector = 
-      message.createButtonCollector(filter, {max: 2, time: 60000 })
+      message.createButtonCollector(filter, {max: 2, time: 60000 }) //60 seconds to answer, bot and one user answer are accepted
 
 
 collector.on('collect', async (button, user, clicker, filter) => {
 
       let embedCongrats = new MessageEmbed()
         .setColor('#00FF00')
-        .setDescription(`Congratulations <@${button.clicker.id}>! You have been awarded **3** points!`) 
+        .setDescription(`Congratulations <@${button.clicker.id}>! You have been awarded **3** points!`) //message sent after round is over, button.clicker is the first person to answer correctly
 
 
    button.reply.defer()
