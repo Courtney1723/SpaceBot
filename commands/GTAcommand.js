@@ -14,11 +14,19 @@ module.exports = {
 
     if (!message.content.toLowerCase().startsWith(prefix + 'gta')) return;
 
-  const gta1 =   await fetch('https://www.reddit.com/r/gtaonline.json').then(res => res.text())
+  const gta1 =   await fetch('https://www.ign.com/wikis/gta-5/GTA_Online_Weekly_Updates').then(res => res.text())
 
-  let args = gta1.split("**Podium Vehicle**") //Gets the latest post
+  let args = gta1.split("mw-headline") 
 
-  let gtaBody = args[0].split("Thanks to")//Gets the latest post
+  let gtaBody = args[2].split("2022: ")//Gets the latest post
+
+  let gtaTitle = args[2].split("\"header\\\"\\u003e")
+
+  let gtaTitle1 = gtaTitle[1].split(":")
+
+  let gtaBodyMain = gtaBody[1].split("u003e\\u003cli\\u003e\\u003cb\\u003e") //Gets the body of the post
+
+  let gtaBodyMain1 = gtaBodyMain[1].split("Prime Gaming accounts by visiting")
 
   const aDate = new Date();
 
@@ -29,19 +37,22 @@ module.exports = {
   let dayDate = aDate.getDate();
 
   if (message.content.toLowerCase().startsWith(prefix + "gta")) {
+    
+        message.channel.send({embed: {
+            color: 0xB75AFF, //Purple
+            title: `${monthDate} ${dayDate}, ${yearDate} - GTA Online Weekly Bonuses & Discounts:`,
+           description: `**Last Updated ${gtaTitle1[0]}** \n\n${gtaBodyMain1[0]} by [clicking here](https://Twitch.amazon.com/Prime/Loot/GTAonline)`
 
-        //message.channel.send({embed: {
-            //color: 0xB75AFF, //Purple
-            //title: `${monthDate} ${dayDate}, ${yearDate} - GTA Online Weekly Bonuses & Discounts:`,
-           //description: 
-    console.log(`**Podium Vehicle** - ${gtaBody[0]} \n[Click Here for more Info](https://www.ign.com/wikis/gta-5/GTA_Online_Weekly_Updates)`
-            .replace(/&amp;#x200B;/g ,"_ _")
-            .replace(/\\u00dc/g ,"Ü")//For the Übermacht
-            .replace(/\\n\\n/g ," \n ") // proper spacing
-            .replace(/\\\\- /g ," ")
-            .replace(/&amp;/g ,"&")
+      .replace(/\\u0026amp;/g, "&") // &
+      .replace(/\\u0026#x2019;/g, "'") // '
+      .replace(/\\u003c\/b\\u003e\\u003cbr\\u003e/g, "\n")
+.replace(/\\u003c\/li\\u003e\\n\\u003cli\\u003e\\u003cb\\u003e/g, "\n\n")
+      .replace(/\\u003cbr\\u003e/g, "\n")
+      .replace(/\\u003c\/b\\u003e/g, "")
 
-        )    
+    }})
+    
+      
             
     
             
