@@ -1,11 +1,10 @@
 const Discord = require("discord.js"); //Discord package
-const keep_alive = require('./keep_alive.js'); //Keep Alive File in sidebar
 const fs = require("fs") //required for accessing command and event files
 const fetch = require("node-fetch") //Required for .fetch() 
 const prefix = "$"; //Creates a prefix $
 const { MessageEmbed } = require('discord.js'); //required for embeds
 const cron = require("node-cron") //required for scheduled tasks
-const timezone = require("moment-timezone")
+const timezone = require("moment-timezone");
 
 
 const client = new Discord.Client();
@@ -92,23 +91,5 @@ client.on('message', message => {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"";
+""; 
 
